@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { useIsMounted } from "usehooks-ts";
 import { useRouter } from "next/router";
 import { Box, Text } from "@saleor/macaw-ui";
-import {isInIframe} from "../lib/is-in-iframe";
+import { isInIframe } from "../lib/is-in-iframe";
 
 const IndexPage: NextPage = () => {
   const { appBridgeState } = useAppBridge();

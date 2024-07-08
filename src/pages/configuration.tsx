@@ -1,6 +1,15 @@
 import { useAppBridge, withAuthorization } from "@saleor/app-sdk/app-bridge";
-import { SALEOR_API_URL_HEADER, SALEOR_AUTHORIZATION_BEARER_HEADER } from "@saleor/app-sdk/const";
-import { ChangeEvent, ReactElement, SyntheticEvent, useEffect, useState } from "react";
+import {
+  SALEOR_API_URL_HEADER,
+  SALEOR_AUTHORIZATION_BEARER_HEADER,
+} from "@saleor/app-sdk/const";
+import {
+  ChangeEvent,
+  ReactElement,
+  SyntheticEvent,
+  useEffect,
+  useState,
+} from "react";
 
 import { ConfigurationError } from "../components/ConfigurationError/ConfigurationError";
 import { useAppApi } from "../hooks/useAppApi";
@@ -9,8 +18,8 @@ import { AppColumnsLayout } from "../components/AppColumnsLayout/AppColumnsLayou
 import { Input, Text, Box, Button } from "@saleor/macaw-ui";
 
 import { AccessWarning } from "../components/AccessWarning/AccessWarning";
-import {TextLink} from "../components/TextLink/TextLink";
-import {useDashboardNotification} from "../lib/use-dashboard-notification";
+import { TextLink } from "../components/TextLink/TextLink";
+import { useDashboardNotification } from "../lib/use-dashboard-notification";
 
 interface ConfigurationField {
   key: string;
@@ -22,7 +31,9 @@ function Configuration() {
   const { notifyError, notifySuccess } = useDashboardNotification();
   const [configuration, setConfiguration] = useState<ConfigurationField[]>();
 
-  const { data: configurationData, error } = useAppApi<{ data: ConfigurationField[] }>({
+  const { data: configurationData, error } = useAppApi<{
+    data: ConfigurationField[];
+  }>({
     url: "/api/configuration",
   });
 
@@ -62,7 +73,9 @@ function Configuration() {
     const { name, value } = event.target as HTMLInputElement;
 
     setConfiguration((prev) =>
-      prev!.map((prevField) => (prevField.key === name ? { ...prevField, value } : prevField)),
+      prev!.map((prevField) =>
+        prevField.key === name ? { ...prevField, value } : prevField,
+      ),
     );
   };
 
@@ -140,8 +153,8 @@ function Instructions() {
         </li>
         <li>
           <Text>
-            2. Copy incoming Webhook URL from Slack app configuration and paste it below into{" "}
-            <Text fontWeight={"bold"}>WEBHOOK_URL</Text> field
+            2. Copy incoming Webhook URL from Slack app configuration and paste
+            it below into <Text fontWeight={"bold"}>WEBHOOK_URL</Text> field
           </Text>
         </li>
         <li>

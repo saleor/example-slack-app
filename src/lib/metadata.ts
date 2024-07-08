@@ -1,4 +1,7 @@
-import { EncryptedMetadataManager, MetadataEntry } from "@saleor/app-sdk/settings-manager";
+import {
+  EncryptedMetadataManager,
+  MetadataEntry,
+} from "@saleor/app-sdk/settings-manager";
 import { Client } from "urql";
 
 import {
@@ -14,7 +17,9 @@ import { settingsManagerSecretKey } from "./saleor-app";
  * which can be used by the manager.
  * Result of this query is cached by the manager.
  */
-export async function fetchAllMetadata(client: Client): Promise<MetadataEntry[]> {
+export async function fetchAllMetadata(
+  client: Client,
+): Promise<MetadataEntry[]> {
   const { error, data } = await client
     .query<FetchAppDetailsQuery>(FetchAppDetailsDocument, {})
     .toPromise();
@@ -24,7 +29,12 @@ export async function fetchAllMetadata(client: Client): Promise<MetadataEntry[]>
     return [];
   }
 
-  return data?.app?.privateMetadata.map((md) => ({ key: md.key, value: md.value })) || [];
+  return (
+    data?.app?.privateMetadata.map((md) => ({
+      key: md.key,
+      value: md.value,
+    })) || []
+  );
 }
 
 /*
@@ -32,7 +42,11 @@ export async function fetchAllMetadata(client: Client): Promise<MetadataEntry[]>
  * Before data are send, additional query for required App ID is made.
  * The manager will use updated entries returned by this mutation to update it's cache.
  */
-export async function mutateMetadata(client: Client, appId: string, metadata: MetadataEntry[]) {
+export async function mutateMetadata(
+  client: Client,
+  appId: string,
+  metadata: MetadataEntry[],
+) {
   const { error: mutationError, data: mutationData } = await client
     .mutation(UpdateAppMetadataDocument, {
       id: appId,

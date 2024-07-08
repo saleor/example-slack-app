@@ -24,9 +24,7 @@ export function AccessWarning({ cause = "unknown_cause" }: AccessWarningProps) {
       <Text as={"h2"} size={11}>
         App can&apos;t be accessed outside of the Saleor Dashboard
       </Text>
-      <Text  style={{ marginTop: "2rem" }}>
-        ❌ {warnings[cause]}
-      </Text>
+      <Text style={{ marginTop: "2rem" }}>❌ {warnings[cause]}</Text>
     </div>
   );
 }

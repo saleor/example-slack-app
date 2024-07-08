@@ -3,9 +3,12 @@ import { OrderCreatedWebhookPayloadFragment } from "../../generated/graphql";
 export const sendSlackMessage = async (
   to: string,
   data: {
-    order: Exclude<OrderCreatedWebhookPayloadFragment["order"], undefined | null>;
+    order: Exclude<
+      OrderCreatedWebhookPayloadFragment["order"],
+      undefined | null
+    >;
     saleorApiUrl: string;
-  }
+  },
 ) => {
   const {
     saleorApiUrl,

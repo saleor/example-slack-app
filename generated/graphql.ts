@@ -21104,22 +21104,6 @@ export type _Service = {
   sdl?: Maybe<Scalars['String']['output']>;
 };
 
-export type OwnWebhookFragment = { __typename?: 'Webhook', id: string, isActive: boolean, name: string, targetUrl: string, asyncEvents: Array<{ __typename?: 'WebhookEventAsync', name: string, eventType: WebhookEventTypeAsyncEnum }>, eventDeliveries?: { __typename?: 'EventDeliveryCountableConnection', edges: Array<{ __typename?: 'EventDeliveryCountableEdge', node: { __typename?: 'EventDelivery', id: string, status: EventDeliveryStatusEnum, attempts?: { __typename?: 'EventDeliveryAttemptCountableConnection', edges: Array<{ __typename?: 'EventDeliveryAttemptCountableEdge', node: { __typename?: 'EventDeliveryAttempt', status: EventDeliveryStatusEnum, id: string, createdAt: any, responseStatusCode?: number | null } }> } | null } }> } | null };
-
-export type DisableWebhookMutationVariables = Exact<{
-  id: Scalars['ID']['input'];
-}>;
-
-
-export type DisableWebhookMutation = { __typename?: 'Mutation', webhookUpdate?: { __typename?: 'WebhookUpdate', errors: Array<{ __typename?: 'WebhookError', message?: string | null }>, webhook?: { __typename?: 'Webhook', id: string, isActive: boolean } | null } | null };
-
-export type EnableWebhookMutationVariables = Exact<{
-  id: Scalars['ID']['input'];
-}>;
-
-
-export type EnableWebhookMutation = { __typename?: 'Mutation', webhookUpdate?: { __typename?: 'WebhookUpdate', errors: Array<{ __typename?: 'WebhookError', message?: string | null }>, webhook?: { __typename?: 'Webhook', id: string, isActive: boolean } | null } | null };
-
 export type UpdateAppMetadataMutationVariables = Exact<{
   id: Scalars['ID']['input'];
   input: Array<MetadataInput> | MetadataInput;
@@ -21133,13 +21117,6 @@ export type FetchAppDetailsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type FetchAppDetailsQuery = { __typename?: 'Query', app?: { __typename?: 'App', id: string, privateMetadata: Array<{ __typename?: 'MetadataItem', key: string, value: string }> } | null };
 
-export type FetchOwnWebhooksQueryVariables = Exact<{
-  id: Scalars['ID']['input'];
-}>;
-
-
-export type FetchOwnWebhooksQuery = { __typename?: 'Query', app?: { __typename?: 'App', id: string, name?: string | null, isActive?: boolean | null, webhooks?: Array<{ __typename?: 'Webhook', id: string, isActive: boolean, name: string, targetUrl: string, asyncEvents: Array<{ __typename?: 'WebhookEventAsync', name: string, eventType: WebhookEventTypeAsyncEnum }>, eventDeliveries?: { __typename?: 'EventDeliveryCountableConnection', edges: Array<{ __typename?: 'EventDeliveryCountableEdge', node: { __typename?: 'EventDelivery', id: string, status: EventDeliveryStatusEnum, attempts?: { __typename?: 'EventDeliveryAttemptCountableConnection', edges: Array<{ __typename?: 'EventDeliveryAttemptCountableEdge', node: { __typename?: 'EventDeliveryAttempt', status: EventDeliveryStatusEnum, id: string, createdAt: any, responseStatusCode?: number | null } }> } | null } }> } | null }> | null } | null };
-
 export type OrderCreatedWebhookPayloadFragment = { __typename?: 'OrderCreated', order?: { __typename?: 'Order', userEmail?: string | null, id: string, number: string, user?: { __typename?: 'User', email: string, firstName: string, lastName: string } | null, shippingAddress?: { __typename?: 'Address', streetAddress1: string, city: string, postalCode: string, country: { __typename?: 'CountryDisplay', country: string } } | null, billingAddress?: { __typename?: 'Address', streetAddress1: string, city: string, postalCode: string, country: { __typename?: 'CountryDisplay', country: string } } | null, subtotal: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', amount: number, currency: string } }, shippingPrice: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', amount: number, currency: string } }, total: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', amount: number, currency: string } } } | null };
 
 export type OrderCreatedSubscriptionVariables = Exact<{ [key: string]: never; }>;
@@ -21147,36 +21124,6 @@ export type OrderCreatedSubscriptionVariables = Exact<{ [key: string]: never; }>
 
 export type OrderCreatedSubscription = { __typename?: 'Subscription', event?: { __typename?: 'AppDeleted' } | { __typename?: 'AppInstalled' } | { __typename?: 'AppStatusChanged' } | { __typename?: 'AppUpdated' } | { __typename?: 'CategoryCreated' } | { __typename?: 'CategoryDeleted' } | { __typename?: 'CategoryUpdated' } | { __typename?: 'ChannelCreated' } | { __typename?: 'ChannelDeleted' } | { __typename?: 'ChannelStatusChanged' } | { __typename?: 'ChannelUpdated' } | { __typename?: 'CheckoutCreated' } | { __typename?: 'CheckoutUpdated' } | { __typename?: 'CollectionCreated' } | { __typename?: 'CollectionDeleted' } | { __typename?: 'CollectionUpdated' } | { __typename?: 'CustomerCreated' } | { __typename?: 'CustomerUpdated' } | { __typename?: 'DraftOrderCreated' } | { __typename?: 'DraftOrderDeleted' } | { __typename?: 'DraftOrderUpdated' } | { __typename?: 'FulfillmentCanceled' } | { __typename?: 'FulfillmentCreated' } | { __typename?: 'GiftCardCreated' } | { __typename?: 'GiftCardDeleted' } | { __typename?: 'GiftCardStatusChanged' } | { __typename?: 'GiftCardUpdated' } | { __typename?: 'InvoiceDeleted' } | { __typename?: 'InvoiceRequested' } | { __typename?: 'InvoiceSent' } | { __typename?: 'MenuCreated' } | { __typename?: 'MenuDeleted' } | { __typename?: 'MenuItemCreated' } | { __typename?: 'MenuItemDeleted' } | { __typename?: 'MenuItemUpdated' } | { __typename?: 'MenuUpdated' } | { __typename?: 'OrderCancelled' } | { __typename?: 'OrderConfirmed' } | { __typename?: 'OrderCreated', order?: { __typename?: 'Order', userEmail?: string | null, id: string, number: string, user?: { __typename?: 'User', email: string, firstName: string, lastName: string } | null, shippingAddress?: { __typename?: 'Address', streetAddress1: string, city: string, postalCode: string, country: { __typename?: 'CountryDisplay', country: string } } | null, billingAddress?: { __typename?: 'Address', streetAddress1: string, city: string, postalCode: string, country: { __typename?: 'CountryDisplay', country: string } } | null, subtotal: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', amount: number, currency: string } }, shippingPrice: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', amount: number, currency: string } }, total: { __typename?: 'TaxedMoney', gross: { __typename?: 'Money', amount: number, currency: string } } } | null } | { __typename?: 'OrderFulfilled' } | { __typename?: 'OrderFullyPaid' } | { __typename?: 'OrderUpdated' } | { __typename?: 'PageCreated' } | { __typename?: 'PageDeleted' } | { __typename?: 'PageUpdated' } | { __typename?: 'ProductCreated' } | { __typename?: 'ProductDeleted' } | { __typename?: 'ProductUpdated' } | { __typename?: 'ProductVariantBackInStock' } | { __typename?: 'ProductVariantCreated' } | { __typename?: 'ProductVariantDeleted' } | { __typename?: 'ProductVariantOutOfStock' } | { __typename?: 'ProductVariantUpdated' } | { __typename?: 'SaleCreated' } | { __typename?: 'SaleDeleted' } | { __typename?: 'SaleUpdated' } | { __typename?: 'ShippingPriceCreated' } | { __typename?: 'ShippingPriceDeleted' } | { __typename?: 'ShippingPriceUpdated' } | { __typename?: 'ShippingZoneCreated' } | { __typename?: 'ShippingZoneDeleted' } | { __typename?: 'ShippingZoneUpdated' } | { __typename?: 'TransactionActionRequest' } | { __typename?: 'TranslationCreated' } | { __typename?: 'TranslationUpdated' } | { __typename?: 'VoucherCreated' } | { __typename?: 'VoucherDeleted' } | { __typename?: 'VoucherUpdated' } | { __typename?: 'WarehouseCreated' } | { __typename?: 'WarehouseDeleted' } | { __typename?: 'WarehouseUpdated' } | null };
 
-export const UntypedOwnWebhookFragmentDoc = gql`
-    fragment OwnWebhook on Webhook {
-  id
-  isActive
-  name
-  targetUrl
-  asyncEvents {
-    name
-    eventType
-  }
-  eventDeliveries(first: 100) {
-    edges {
-      node {
-        id
-        status
-        attempts(first: 100) {
-          edges {
-            node {
-              status
-              id
-              createdAt
-              responseStatusCode
-            }
-          }
-        }
-      }
-    }
-  }
-}
-    `;
 export const UntypedOrderCreatedWebhookPayloadFragmentDoc = gql`
     fragment OrderCreatedWebhookPayload on OrderCreated {
   order {
@@ -21225,40 +21172,6 @@ export const UntypedOrderCreatedWebhookPayloadFragmentDoc = gql`
   }
 }
     `;
-export const UntypedDisableWebhookDocument = gql`
-    mutation DisableWebhook($id: ID!) {
-  webhookUpdate(id: $id, input: {isActive: false}) {
-    errors {
-      message
-    }
-    webhook {
-      id
-      isActive
-    }
-  }
-}
-    `;
-
-export function useDisableWebhookMutation() {
-  return Urql.useMutation<DisableWebhookMutation, DisableWebhookMutationVariables>(UntypedDisableWebhookDocument);
-};
-export const UntypedEnableWebhookDocument = gql`
-    mutation EnableWebhook($id: ID!) {
-  webhookUpdate(id: $id, input: {isActive: true}) {
-    errors {
-      message
-    }
-    webhook {
-      id
-      isActive
-    }
-  }
-}
-    `;
-
-export function useEnableWebhookMutation() {
-  return Urql.useMutation<EnableWebhookMutation, EnableWebhookMutationVariables>(UntypedEnableWebhookDocument);
-};
 export const UntypedUpdateAppMetadataDocument = gql`
     mutation UpdateAppMetadata($id: ID!, $input: [MetadataInput!]!) {
   updatePrivateMetadata(id: $id, input: $input) {
@@ -21290,22 +21203,6 @@ export const UntypedFetchAppDetailsDocument = gql`
 export function useFetchAppDetailsQuery(options?: Omit<Urql.UseQueryArgs<FetchAppDetailsQueryVariables>, 'query'>) {
   return Urql.useQuery<FetchAppDetailsQuery, FetchAppDetailsQueryVariables>({ query: UntypedFetchAppDetailsDocument, ...options });
 };
-export const UntypedFetchOwnWebhooksDocument = gql`
-    query FetchOwnWebhooks($id: ID!) {
-  app(id: $id) {
-    id
-    name
-    isActive
-    webhooks {
-      ...OwnWebhook
-    }
-  }
-}
-    ${UntypedOwnWebhookFragmentDoc}`;
-
-export function useFetchOwnWebhooksQuery(options: Omit<Urql.UseQueryArgs<FetchOwnWebhooksQueryVariables>, 'query'>) {
-  return Urql.useQuery<FetchOwnWebhooksQuery, FetchOwnWebhooksQueryVariables>({ query: UntypedFetchOwnWebhooksDocument, ...options });
-};
 export const UntypedOrderCreatedDocument = gql`
     subscription OrderCreated {
   event {
@@ -21317,11 +21214,7 @@ export const UntypedOrderCreatedDocument = gql`
 export function useOrderCreatedSubscription<TData = OrderCreatedSubscription>(options?: Omit<Urql.UseSubscriptionArgs<OrderCreatedSubscriptionVariables>, 'query'>, handler?: Urql.SubscriptionHandler<OrderCreatedSubscription, TData>) {
   return Urql.useSubscription<OrderCreatedSubscription, TData, OrderCreatedSubscriptionVariables>({ query: UntypedOrderCreatedDocument, ...options }, handler);
 };
-export const OwnWebhookFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"OwnWebhook"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Webhook"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"targetUrl"}},{"kind":"Field","name":{"kind":"Name","value":"asyncEvents"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"eventType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"eventDeliveries"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"100"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"attempts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"100"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"responseStatusCode"}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<OwnWebhookFragment, unknown>;
 export const OrderCreatedWebhookPayloadFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"OrderCreatedWebhookPayload"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OrderCreated"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"order"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userEmail"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"number"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"shippingAddress"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"streetAddress1"}},{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"postalCode"}},{"kind":"Field","name":{"kind":"Name","value":"country"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"country"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"billingAddress"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"streetAddress1"}},{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"postalCode"}},{"kind":"Field","name":{"kind":"Name","value":"country"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"country"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"subtotal"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"gross"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"shippingPrice"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"gross"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"total"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"gross"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}}]}}]}}]}}]} as unknown as DocumentNode<OrderCreatedWebhookPayloadFragment, unknown>;
-export const DisableWebhookDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"DisableWebhook"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"webhookUpdate"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}},{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"isActive"},"value":{"kind":"BooleanValue","value":false}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"errors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"message"}}]}},{"kind":"Field","name":{"kind":"Name","value":"webhook"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}}]}}]}}]}}]} as unknown as DocumentNode<DisableWebhookMutation, DisableWebhookMutationVariables>;
-export const EnableWebhookDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"EnableWebhook"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"webhookUpdate"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}},{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"isActive"},"value":{"kind":"BooleanValue","value":true}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"errors"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"message"}}]}},{"kind":"Field","name":{"kind":"Name","value":"webhook"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}}]}}]}}]}}]} as unknown as DocumentNode<EnableWebhookMutation, EnableWebhookMutationVariables>;
 export const UpdateAppMetadataDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"mutation","name":{"kind":"Name","value":"UpdateAppMetadata"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"input"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"MetadataInput"}}}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"updatePrivateMetadata"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}},{"kind":"Argument","name":{"kind":"Name","value":"input"},"value":{"kind":"Variable","name":{"kind":"Name","value":"input"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"item"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"privateMetadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}}]}}]}}]} as unknown as DocumentNode<UpdateAppMetadataMutation, UpdateAppMetadataMutationVariables>;
 export const FetchAppDetailsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"FetchAppDetails"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"app"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"privateMetadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}}]}}]} as unknown as DocumentNode<FetchAppDetailsQuery, FetchAppDetailsQueryVariables>;
-export const FetchOwnWebhooksDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"FetchOwnWebhooks"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"id"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"ID"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"app"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"id"},"value":{"kind":"Variable","name":{"kind":"Name","value":"id"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"webhooks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"OwnWebhook"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"OwnWebhook"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Webhook"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"isActive"}},{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"targetUrl"}},{"kind":"Field","name":{"kind":"Name","value":"asyncEvents"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"eventType"}}]}},{"kind":"Field","name":{"kind":"Name","value":"eventDeliveries"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"100"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"attempts"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"first"},"value":{"kind":"IntValue","value":"100"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"edges"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"node"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"status"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"createdAt"}},{"kind":"Field","name":{"kind":"Name","value":"responseStatusCode"}}]}}]}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<FetchOwnWebhooksQuery, FetchOwnWebhooksQueryVariables>;
 export const OrderCreatedDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"subscription","name":{"kind":"Name","value":"OrderCreated"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"event"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"OrderCreatedWebhookPayload"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"OrderCreatedWebhookPayload"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OrderCreated"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"order"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"userEmail"}},{"kind":"Field","name":{"kind":"Name","value":"id"}},{"kind":"Field","name":{"kind":"Name","value":"number"}},{"kind":"Field","name":{"kind":"Name","value":"user"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"email"}},{"kind":"Field","name":{"kind":"Name","value":"firstName"}},{"kind":"Field","name":{"kind":"Name","value":"lastName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"shippingAddress"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"streetAddress1"}},{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"postalCode"}},{"kind":"Field","name":{"kind":"Name","value":"country"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"country"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"billingAddress"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"streetAddress1"}},{"kind":"Field","name":{"kind":"Name","value":"city"}},{"kind":"Field","name":{"kind":"Name","value":"postalCode"}},{"kind":"Field","name":{"kind":"Name","value":"country"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"country"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"subtotal"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"gross"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"shippingPrice"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"gross"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"total"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"gross"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"amount"}},{"kind":"Field","name":{"kind":"Name","value":"currency"}}]}}]}}]}}]}}]} as unknown as DocumentNode<OrderCreatedSubscription, OrderCreatedSubscriptionVariables>;

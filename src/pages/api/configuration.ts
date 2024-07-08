@@ -1,10 +1,12 @@
-import { createProtectedHandler, ProtectedHandlerContext } from "@saleor/app-sdk/handlers/next";
+import {
+  createProtectedHandler,
+  ProtectedHandlerContext,
+} from "@saleor/app-sdk/handlers/next";
 import { NextApiRequest, NextApiResponse } from "next";
 
 import { createSettingsManager } from "../../lib/metadata";
 import { saleorApp } from "../../lib/saleor-app";
 import { createGraphQLClient } from "../../lib/create-graphql-client";
-import { WebhookActivityTogglerService } from "../../lib/WebhookActivityToggler.service";
 import { isValidUrl } from "../../lib/is-valid-url";
 
 const WEBHOOK_URL = "WEBHOOK_URL";
@@ -38,7 +40,9 @@ export const handler = async (
       return;
     case "POST": {
       const reqBody = req.body as PostRequestBody;
-      const newWebhookUrl = (await reqBody.data?.find((entry) => entry.key === WEBHOOK_URL))?.value;
+      const newWebhookUrl = (
+        await reqBody.data?.find((entry) => entry.key === WEBHOOK_URL)
+      )?.value;
 
       if (!newWebhookUrl) {
         console.error("New value for the webhook URL has not been found");
@@ -58,12 +62,6 @@ export const handler = async (
 
       await settings.set({ key: WEBHOOK_URL, value: newWebhookUrl });
 
-      /**
-       * Enable webhooks. Assume that URL is correct.
-       * With better implementation, URL should be validated first (best with Slack API test call).
-       */
-      await new WebhookActivityTogglerService(appId, client).enableOwnWebhooks();
-
       return res.status(200).json({
         success: true,
         data: [{ key: WEBHOOK_URL, value: await settings.get(WEBHOOK_URL) }],
@@ -74,4 +72,7 @@ export const handler = async (
   }
 };
 
-export default createProtectedHandler(handler, saleorApp.apl, ["MANAGE_APPS", "MANAGE_ORDERS"]);
+export default createProtectedHandler(handler, saleorApp.apl, [
+  "MANAGE_APPS",
+  "MANAGE_ORDERS",
+]);

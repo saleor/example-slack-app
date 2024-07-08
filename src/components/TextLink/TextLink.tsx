@@ -9,7 +9,13 @@ export interface TextLinkProps extends TextProps {
 
 const BaseTextLink = (props: TextLinkProps) => {
   return (
-    <Text target="_blank" as={"a"} textDecoration={"none"} rel="noopener noreferrer" {...props}>
+    <Text
+      target="_blank"
+      as={"a"}
+      textDecoration={"none"}
+      rel="noopener noreferrer"
+      {...props}
+    >
       <Text
         transition={"ease"}
         fontWeight={"bold"}
@@ -25,16 +31,23 @@ const BaseTextLink = (props: TextLinkProps) => {
   );
 };
 
-export const TextLink = ({ href, newTab = false, children, ...props }: TextLinkProps) => {
+export const TextLink = ({
+  href,
+  newTab = false,
+  children,
+  ...props
+}: TextLinkProps) => {
   const { appBridge } = useAppBridge();
   const { push } = useRouter();
 
-  const onNewTabClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+  const onNewTabClick = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+  ) => {
     event.preventDefault();
 
     if (!appBridge) {
       console.warn(
-        "App bridge is not initialized, TextLink cannot be used with external links without it."
+        "App bridge is not initialized, TextLink cannot be used with external links without it.",
       );
     }
 
@@ -42,7 +55,7 @@ export const TextLink = ({ href, newTab = false, children, ...props }: TextLinkP
       actions.Redirect({
         to: href,
         newContext: true,
-      })
+      }),
     );
 
     if (props.onClick) {
@@ -50,7 +63,9 @@ export const TextLink = ({ href, newTab = false, children, ...props }: TextLinkP
     }
   };
 
-  const onInternalClick = (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+  const onInternalClick = (
+    event: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+  ) => {
     event.preventDefault();
 
     push(href);

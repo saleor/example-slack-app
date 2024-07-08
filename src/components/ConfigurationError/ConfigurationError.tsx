@@ -7,8 +7,8 @@ export function ConfigurationError() {
         <li>Internet connection has been lost</li>
         <li>Application installation process is still in progress.</li>
         <li>
-          Application is misconfigured. If you would like to know more how auth configuration is
-          kept,{" "}
+          Application is misconfigured. If you would like to know more how auth
+          configuration is kept,{" "}
           <a
             href="https://github.com/saleor/saleor-app-sdk/blob/main/docs/apl.md"
             target="_blank"

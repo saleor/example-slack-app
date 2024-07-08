@@ -1,10 +1,14 @@
-import {authExchange} from "@urql/exchange-auth";
-import {cacheExchange, createClient as urqlCreateClient, fetchExchange, Exchange} from "urql";
+import { authExchange } from "@urql/exchange-auth";
+import {
+  cacheExchange,
+  createClient as urqlCreateClient,
+  fetchExchange,
+  Exchange,
+} from "urql";
 
 export interface CreateGraphQLClientArgs {
-    saleorApiUrl: string;
-    token?: string;
-
+  saleorApiUrl: string;
+  token?: string;
 }
 
 /*
@@ -18,30 +22,34 @@ export interface CreateGraphQLClientArgs {
  *
  * In the context of developing Apps, the two first options are recommended.
  */
-export const createGraphQLClient = ({saleorApiUrl, token,}: CreateGraphQLClientArgs) => {
-    return urqlCreateClient({
-        url: saleorApiUrl,
-        exchanges: [
-            cacheExchange,
-            authExchange(async (utils) => {
-                return {
-                    addAuthToOperation(operation) {
-                        const headers: Record<string, string> = token
-                            ? {
-                                "Authorization-Bearer": token,
-                            }
-                            : {};
+export const createGraphQLClient = ({
+  saleorApiUrl,
+  token,
+}: CreateGraphQLClientArgs) => {
+  return urqlCreateClient({
+    url: saleorApiUrl,
+    exchanges: [
+      cacheExchange,
+      authExchange(async (utils) => {
+        return {
+          addAuthToOperation(operation) {
+            const headers: Record<string, string> = token
+              ? {
+                  "Authorization-Bearer": token,
+                }
+              : {};
 
-                        return utils.appendHeaders(operation, headers);
-                    },
-                    didAuthError(error) {
-                        return error.graphQLErrors.some((e) => e.extensions?.code === "FORBIDDEN");
-                    },
-                    async refreshAuth() {
-                    },
-                };
-            }),
-            fetchExchange,
-        ],
-    });
+            return utils.appendHeaders(operation, headers);
+          },
+          didAuthError(error) {
+            return error.graphQLErrors.some(
+              (e) => e.extensions?.code === "FORBIDDEN",
+            );
+          },
+          async refreshAuth() {},
+        };
+      }),
+      fetchExchange,
+    ],
+  });
 };

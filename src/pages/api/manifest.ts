@@ -22,7 +22,7 @@ const handler = createManifestHandler({
       dataPrivacyUrl: "https://saleor.io/legal/privacy/",
       extensions: [],
       homepageUrl: "https://github.com/saleor/apps",
-      id: "saleor.app.slack",
+      id: "saleor.app.slack-example",
       name: "Slack",
       permissions: ["MANAGE_ORDERS"],
       supportUrl: "https://github.com/saleor/apps/discussions",

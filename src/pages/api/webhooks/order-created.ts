@@ -1,4 +1,7 @@
-import { NextWebhookApiHandler, SaleorAsyncWebhook } from "@saleor/app-sdk/handlers/next";
+import {
+  NextWebhookApiHandler,
+  SaleorAsyncWebhook,
+} from "@saleor/app-sdk/handlers/next";
 import { gql } from "urql";
 
 import { OrderCreatedWebhookPayloadFragment } from "../../../../generated/graphql";
@@ -6,7 +9,6 @@ import { createSettingsManager } from "../../../lib/metadata";
 import { saleorApp } from "../../../lib/saleor-app";
 import { sendSlackMessage } from "../../../lib/slack";
 import { createGraphQLClient } from "../../../lib/create-graphql-client";
-import { WebhookActivityTogglerService } from "../../../lib/WebhookActivityToggler.service";
 import { isValidUrl } from "../../../lib/is-valid-url";
 
 const OrderCreatedWebhookPayload = gql`
@@ -67,20 +69,19 @@ const OrderCreatedGraphqlSubscription = gql`
   }
 `;
 
-export const orderCreatedWebhook = new SaleorAsyncWebhook<OrderCreatedWebhookPayloadFragment>({
-  name: "Order Created in Saleor",
-  webhookPath: "api/webhooks/order-created",
-  event: "ORDER_CREATED",
-  apl: saleorApp.apl,
-  query: OrderCreatedGraphqlSubscription,
-  isActive: false,
-});
+export const orderCreatedWebhook =
+  new SaleorAsyncWebhook<OrderCreatedWebhookPayloadFragment>({
+    name: "Order Created in Saleor",
+    webhookPath: "api/webhooks/order-created",
+    event: "ORDER_CREATED",
+    apl: saleorApp.apl,
+    query: OrderCreatedGraphqlSubscription,
+    isActive: false,
+  });
 
-const handler: NextWebhookApiHandler<OrderCreatedWebhookPayloadFragment> = async (
-  req,
-  res,
-  context,
-) => {
+const handler: NextWebhookApiHandler<
+  OrderCreatedWebhookPayloadFragment
+> = async (req, res, context) => {
   const { payload, authData } = context;
 
   const { saleorApiUrl, token, appId } = authData;
@@ -95,22 +96,17 @@ const handler: NextWebhookApiHandler<OrderCreatedWebhookPayloadFragment> = async
   const webhookUrl = await settings.get("WEBHOOK_URL");
 
   if (!webhookUrl || !isValidUrl(webhookUrl)) {
-    const webhooksToggler = new WebhookActivityTogglerService(appId, client);
-
-    /**
-     * If webhookUrl doesn't exist, it means app is not configured. Webhooks are disabled to prevent unnecessary
-     * traffic.
-     */
-    await webhooksToggler.disableOwnWebhooks();
-
     return res.status(400).send({
       success: false,
-      message: "The application has not been configured yet - Webhook URL is invalid or missing.",
+      message:
+        "The application has not been configured yet - Webhook URL is invalid or missing.",
     });
   }
 
   if (!payload.order) {
-    return res.status(400).send({ success: false, message: "Order not found in request payload" });
+    return res
+      .status(400)
+      .send({ success: false, message: "Order not found in request payload" });
   }
 
   const response = await sendSlackMessage(webhookUrl, {
@@ -121,7 +117,9 @@ const handler: NextWebhookApiHandler<OrderCreatedWebhookPayloadFragment> = async
   if (response.status !== 200) {
     const errorMessage = await response.text();
 
-    console.error(`Slack API responded with code ${response.status}: ${errorMessage}`);
+    console.error(
+      `Slack API responded with code ${response.status}: ${errorMessage}`,
+    );
 
     return res.status(500).send({
       success: false,
@@ -129,7 +127,9 @@ const handler: NextWebhookApiHandler<OrderCreatedWebhookPayloadFragment> = async
     });
   }
 
-  return res.status(200).send({ success: true, message: "Slack message sent!" });
+  return res
+    .status(200)
+    .send({ success: true, message: "Slack message sent!" });
 };
 
 export default orderCreatedWebhook.createHandler(handler);
