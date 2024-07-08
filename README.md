@@ -1,13 +1,14 @@
-# Saleor App Slack
+# Saleor App Example: Slack integration
+
+Note: This repository is an example, which means:
+- It's not production ready
+- It's not actively maintained by Saleor
+- It should be used as a learning resource
 
 Saleor application to send Slack messages based on `order_created` events.
 
-![](docs/images/readme.jpg)
+![](screenshot.png)
 
-## Maintenance note
-
-This app is an example - you can fork it as a template and self-host it.
-Saleor doesn't actively maintain this app.
 
 ### What's included?
 
@@ -28,61 +29,6 @@ If you need to support multiple tenants application or you want to deploy your a
 
 To read more about storing auth data, read the [APL documentation](https://github.com/saleor/saleor-app-sdk/blob/main/docs/apl.md)
 
-### Saleor CLI for the win 🚀
-
-[Saleor CLI](https://github.com/saleor/saleor-cli) is designed to save you from the repetitive chores around Saleor development, including creating Apps. It will take the burden of spawning new apps locally, connecting them with Saleor environments, and establishing a tunnel for local development in seconds.
-
-[Full Saleor CLI reference](https://docs.saleor.io/docs/3.x/developer/cli)
-
-If you don't have (free developer) Saleor Cloud account create one with the following command:
-
-```
-saleor register
-```
-
-Now you're ready to run this application in development mode:
-
-```
-pnpm run dev
-```
-
-Having your app running, the final thing you want to establish is a tunnel with your Saleor environment. Go to your app's directory first and run:
-
-```
-saleor app tunnel
-```
-
-Your local application should be available now to the outside world (Saleor instance) for accepting all the events via webhooks.
-
-A quick note: the next time you come back to your project, it is enough to launch your app in a standard way (and then launch your tunnel as described earlier):
-
-```
-pnpm dev
-```
-
-### Local development without CLI
-
-Add URL of your Saleor instance to the `.env` file:
-
-```
-NEXT_PUBLIC_SALEOR_HOST_URL=https://your-saleor-instance.com
-```
-
-Install dependencies `pnpm install`
-
-Start local server `pnpm run dev`
-
-Follow the guide [how install your app](https://docs.saleor.io/docs/3.x/developer/extending/apps/installing-apps#installation-using-graphql-api) and use tunneling tools like [localtunnel](https://github.com/localtunnel/localtunnel) or [ngrok](https://ngrok.com/) in order to expose your local server.
-
-If you use [saleor-dashboard](https://github.com/saleor/saleor-dashboard) and your local server is exposed, you can install your app by following this link:
-
-```
-[YOUR_SALEOR_DASHBOARD_URL]/apps/install?manifestUrl=[YOUR_APPS_MANIFEST_URL]
-```
-
-### Connecting your application to Slack
-
-Read how to connect the app with the Slack [here](./docs/setup-slack-app.md)
 
 ### Generated schema and typings
 
