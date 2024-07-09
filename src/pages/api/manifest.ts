@@ -13,7 +13,7 @@ const handler = createManifestHandler({
       about:
         "Saleor Slack integration allows you to get notifications on Slack channel from Saleor events.",
       appUrl: iframeBaseUrl,
-      author: "Saleor Commerce",
+      author: "Saleor App examples",
       brand: {
         logo: {
           default: `${apiBaseURL}/logo.png`,
@@ -21,11 +21,11 @@ const handler = createManifestHandler({
       },
       dataPrivacyUrl: "https://saleor.io/legal/privacy/",
       extensions: [],
-      homepageUrl: "https://github.com/saleor/apps",
+      homepageUrl: "https://github.com/saleor/example-slack-app",
       id: "saleor.app.slack-example",
       name: "Slack",
       permissions: ["MANAGE_ORDERS"],
-      supportUrl: "https://github.com/saleor/apps/discussions",
+      supportUrl: "https://github.com/saleor/example-slack-app",
       tokenTargetUrl: `${apiBaseURL}/api/register`,
       version: packageJson.version,
       webhooks: [orderCreatedWebhook.getWebhookManifest(apiBaseURL)],
